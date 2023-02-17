@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->bigIncrements('id_tickets');
+            $table->integer('id_tickets')->autoIncrement();
             $table->string('autor',70);
             $table->string('depa',20);
             $table->dateTime('fecha')->useCurrent();
             $table->string('clasif',25);
             $table->text('detalles',100);
             $table->string('estatus',25);
+            /* $table->string('departamento',20); */
+            $table->foreign('departamento')->references('id_departamento')->on('departamento');
             $table->timestamps(); 
+
         });
     }
 
